@@ -1,0 +1,1880 @@
+name: Customer
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: 'api/partner/appointment/{uuid}/status/update'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Appointment
+      subgroupDescription: ''
+      title: update.status
+      description: 'This resource is responsible to update a specific appointment'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: 'The UUID of appointment uuid'
+        required: true
+        example: fe0dcdc5-62f2-3b4b-a566-888993f8b6db
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: fe0dcdc5-62f2-3b4b-a566-888993f8b6db
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      date_time:
+        name: date_time
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: true
+        example: '2023-01-23 16:16:21'
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'The status to update.'
+        required: false
+        example: 'checkin, checkout, canceled or finished'
+        type: required
+        custom: []
+    cleanBodyParameters:
+      date_time: '2023-01-23 16:16:21'
+      status: 'checkin, checkout, canceled or finished'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Appointment updated successfully",
+            "data": {
+              "uuid": "31b7cce0-ca3f-48c6-93db-3cb6cb2fda72",
+              "patient_name": "Ms. Gracie Corkery",
+              "patient_phone": "+1 (256) 330-1205",
+              "time_init": "2022-11-20 09:00",
+              "time_end": "2022-11-20 12:00",
+              "time_total": 75,
+              "status": "checkin",
+              "value_per_minute": "1.13",
+              "value_total": "84.75",
+              "checkin_at": "2022-11-20 09:35:00",
+              "checkout_at": null,
+              "finished_at": null,
+              "canceled_at": null,
+              "schedule_uuid": "c202aa39-7d78-43e1-93f2-9b482c10b42e",
+              "specialist": {
+                "uuid": "3f3d4080-d475-47bd-963f-4e56e93b92d4",
+                "name": "customer",
+                "gender": null,
+                "email": "customer@fusion.com",
+                "role_name": "customer",
+                "photo": null,
+                "contacts": []
+              },
+              "room": {
+                "uuid": "f5176549-ff96-4f3f-b419-0cb1def382dc",
+                "name": "Mr. Trent McKenzie V",
+                "number": "779504820",
+                "price_per_minute": 49.99,
+                "photos": [],
+                "contacts": []
+              }
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/partner/appointment/search
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Appointment
+      subgroupDescription: ''
+      title: search
+      description: 'This resource is responsible for search appointments'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      date:
+        name: date
+        description: 'Date of appointments.'
+        required: false
+        example: '2022-11-20'
+        type: required
+        custom: []
+      filter:
+        name: filter
+        description: 'Filter Type.'
+        required: false
+        example: 'all,checkin,checkout,canceled,finished,coworking'
+        type: required
+        custom: []
+      uuid:
+        name: uuid
+        description: 'Uuid of Room to search specifics endpoints.'
+        required: false
+        example: 323135f7-1a47-4690-8a64-063fc98add02
+        type: The
+        custom: []
+      schedule_uuid:
+        name: schedule_uuid
+        description: 'UUID of schedule. Examplem:'
+        required: false
+        example: 323135f7-1a47-4690-8a64-063fc98add03
+        type: The
+        custom: []
+    cleanBodyParameters:
+      date: '2022-11-20'
+      filter: 'all,checkin,checkout,canceled,finished,coworking'
+      uuid: 323135f7-1a47-4690-8a64-063fc98add02
+      schedule_uuid: 323135f7-1a47-4690-8a64-063fc98add03
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status": true,
+           "message": "Appointment list retrieved successfully",
+           "data": {
+             "current_page": 1,
+             "data": [
+               {
+                 "uuid": "133a7a51-e7ba-4e86-8348-11d0c4b689fa",
+                 "patient_name": "Herminia O'Keefe",
+                 "patient_phone": "+1-281-950-9270",
+                 "time_init": "2022-11-20 12:00",
+                 "time_end": "2022-11-20 14:00",
+                 "time_total": 75,
+                 "status": "scheduled",
+                 "value_per_minute": "1.41",
+                 "value_total": "105.75",
+                 "checkin_at": null,
+                 "checkout_at": null,
+                 "finished_at": null,
+                 "canceled_at": null,
+                 "schedule_uuid": "8af3bef8-fa53-4ba2-bc91-053e4de42c57",
+                 "specialist": {
+                   "uuid": "9c77632e-df26-4737-ae9c-8e90467e04b8",
+                   "name": "customer",
+                   "gender": null,
+                   "email": "customer@fusion.com",
+                   "role_name": "customer",
+                   "photo": null,
+                   "contacts": []
+                 },
+                 "room": {
+                   "uuid": "33c8b27a-474c-46cd-a1fd-dcb81b5e0ef6",
+                   "name": "Ned Bartoletti",
+                   "number": "9498",
+                   "price_per_minute": 43.26,
+                   "photos": [],
+                   "contacts": []
+                 }
+               }
+             ],
+             "first_page_url": "http:\/\/localhost:9000\/api\/partner\/appointment\/search?page=1",
+             "from": 1,
+             "last_page": 1,
+             "last_page_url": "http:\/\/localhost:9000\/api\/partner\/appointment\/search?page=1",
+             "links": [
+               {
+                 "url": null,
+                 "label": "&laquo; Previous",
+                 "active": false
+               },
+               {
+                 "url": "http:\/\/localhost:9000\/api\/partner\/appointment\/search?page=1",
+                 "label": "1",
+                 "active": true
+               },
+               {
+                 "url": null,
+                 "label": "Next &raquo;",
+                 "active": false
+               }
+             ],
+             "next_page_url": null,
+             "path": "http:\/\/localhost:9000\/api\/partner\/appointment\/search",
+             "per_page": 30,
+             "prev_page_url": null,
+             "to": 1,
+             "total": 1
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/customer/appointment
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Appointment
+      subgroupDescription: ''
+      title: index
+      description: 'Display a listing of the resource.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      date:
+        name: date
+        description: 'The date of appointments list.'
+        required: true
+        example: '2022-11-19'
+        type: string
+        custom: []
+    cleanUrlParameters:
+      date: '2022-11-19'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status": true,
+           "message": "Appointment list retrieved successfully",
+           "data": [
+             {
+               "uuid": "cd1356dc-57ee-4dd5-bf71-a799d36f8e3c",
+               "patient_name": "Prof. Liliane Gaylord PhD",
+               "patient_phone": "424-251-5716",
+               "time_init": "2022-11-19 08:00",
+               "time_end": "2022-11-19 09:15",
+               "time_total": 75,
+               "status": "scheduled",
+               "value_per_minute": "1.14",
+               "value_total": "85.50",
+               "checkin_at": null,
+               "checkout_at": null,
+               "finished_at": null,
+               "canceled_at": null,
+               "schedule_uuid": "6937025e-0862-4233-81bd-9286ad5e5f61",
+               "specialist": {
+                 "uuid": "c15edb7c-b933-412b-8452-d8e3d2a389e2",
+                 "name": "customer",
+                 "gender": null,
+                 "email": "customer@fusion.com",
+                 "role_name": "customer",
+                 "photo": null,
+                 "contacts": []
+               },
+               "room": {
+                 "uuid": "0fbfb3a6-51d9-4f56-acba-487a62666c2f",
+                 "name": "Zoila Spinka",
+                 "number": "137",
+                 "price_per_minute": 96.83,
+                 "photos": [],
+                 "contacts": []
+               }
+             },
+           ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/customer/appointment
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Appointment
+      subgroupDescription: ''
+      title: store
+      description: 'This resource is responsible for store a new appointment.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      customer_uuid:
+        name: customer_uuid
+        description: 'The UUID of customer user'
+        required: true
+        example: 4797cab5-ceea-3927-80dd-7f9ae676e2ce
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The UUID of appointment uuid'
+        required: true
+        example: f4b5bc15-0c16-3797-8451-db7477d27982
+        type: string
+        custom: []
+    cleanUrlParameters:
+      customer_uuid: 4797cab5-ceea-3927-80dd-7f9ae676e2ce
+      uuid: f4b5bc15-0c16-3797-8451-db7477d27982
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      patient_name:
+        name: patient_name
+        description: 'The patient name'
+        required: false
+        example: distinctio
+        type: required
+        custom: []
+      patient_phone:
+        name: patient_phone
+        description: 'The patient phone'
+        required: false
+        example: et
+        type: required
+        custom: []
+      room_uuid:
+        name: room_uuid
+        description: 'The room UUID.'
+        required: false
+        example: 323135f7-1a47-4690-8a64-063fc98add02
+        type: required
+        custom: []
+      time_init:
+        name: time_init
+        description: 'The appointment start time.'
+        required: false
+        example: '2022-11-20 14:00:00'
+        type: required
+        custom: []
+      time_end:
+        name: time_end
+        description: 'The appointment end time.'
+        required: false
+        example: '2022-11-20 17:00:00'
+        type: required
+        custom: []
+    cleanBodyParameters:
+      patient_name: distinctio
+      patient_phone: et
+      room_uuid: 323135f7-1a47-4690-8a64-063fc98add02
+      time_init: '2022-11-20 14:00:00'
+      time_end: '2022-11-20 17:00:00'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "message": "Appointment retrieved successfully",
+          "data": {
+            "uuid": "22a78733-21b9-4d16-a793-bd2c593b42ab",
+            "patient_name": "Prof. Destinee Schuppe PhD",
+            "patient_phone": "+16829970665",
+            "time_init": "2022-11-19 08:00",
+            "time_end": "2022-11-19 09:15",
+            "time_total": 75,
+            "status": "scheduled",
+            "value_per_minute": "1.48",
+            "value_total": "111.00",
+            {
+              "status": true,
+              "message": "Appointment created successfully",
+              "data": {
+                "patient_name": "Teste",
+                "patient_phone": "999999999",
+                "time_total": 180,
+                "value_per_minute": 91.2,
+                "value_total": 16416,
+                "status": "pending",
+                "time_init": "2022-11-20 14:00",
+                "time_end": "2022-11-20 17:00",
+                "uuid": "f91b8484-5381-4f7a-bcdc-424792fe3d24",
+                "schedule_uuid": "eb7e068a-7eac-4db2-b6d2-625bd02d94c2",
+                "specialist": {
+                  "uuid": "19d640fc-3021-49ee-abdb-570a828649b0",
+                  "name": "customer",
+                  "gender": null,
+                  "email": "customer@fusion.com",
+                  "role_name": "customer",
+                  "photo": null,
+                  "contacts": []
+                },
+                "room": {
+                  "uuid": "a7c7c863-53e8-44bb-b8de-b4fb231d3f3b",
+                  "name": "Mrs. Erika Mohr Jr.",
+                  "number": "68",
+                  "price_per_minute": 91.2,
+                  "photos": [],
+                  "contacts": []
+                }
+              }
+            }
+            "checkin_at": null,
+            "checkout_at": null,
+            "finished_at": null,
+            "canceled_at": null,
+            "schedule_uuid": "b44671e6-8464-4301-803d-0cd37388ab29",
+            "specialist": {
+              "uuid": "6152fd20-391b-4190-ac53-cb4aa8114026",
+              "name": "customer",
+              "gender": null,
+              "email": "customer@fusion.com",
+              "role_name": "customer",
+              "photo": null,
+              "contacts": []
+            },
+            "room": {
+              "uuid": "ef8488a6-66c1-4afb-b0c5-fff00e2280fc",
+              "name": "Prof. Cristina Koch V",
+              "number": "612161",
+              "price_per_minute": 36.12,
+              "photos": [],
+              "contacts": []
+            }
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/customer/appointment/{uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Appointment
+      subgroupDescription: ''
+      title: show
+      description: 'This resource is responsible for show specific appointment'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: 'The UUID of appointment uuid'
+        required: true
+        example: c5c1f05c-47b0-31b2-b0ba-e0edf23a2483
+        type: string
+        custom: []
+      customer_uuid:
+        name: customer_uuid
+        description: 'The UUID of customer user'
+        required: true
+        example: 417de8ba-98bd-3e41-99cf-207b037851bd
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c5c1f05c-47b0-31b2-b0ba-e0edf23a2483
+      customer_uuid: 417de8ba-98bd-3e41-99cf-207b037851bd
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status": true,
+           "message": "Appointment retrieved successfully",
+           "data": {
+             "uuid": "22a78733-21b9-4d16-a793-bd2c593b42ab",
+             "patient_name": "Prof. Destinee Schuppe PhD'",
+             "patient_phone": "+16829970665",
+             "time_init": "2022-11-19 08:00",
+             "time_end": "2022-11-19 09:15",
+             "time_total": 75,
+             "status": "scheduled",
+             "value_per_minute": "1.48",
+             "value_total": "111.00",
+             "checkin_at": null,
+             "checkout_at": null,
+             "finished_at": null,
+             "canceled_at": null,
+             "schedule_uuid": "b44671e6-8464-4301-803d-0cd37388ab29",
+             "specialist": {
+               "uuid": "6152fd20-391b-4190-ac53-cb4aa8114026",
+               "name": "customer",
+               "gender": null,
+               "email": "customer@fusion.com",
+               "role_name": "customer",
+               "photo": null,
+               "contacts": []
+             },
+             "room": {
+               "uuid": "ef8488a6-66c1-4afb-b0c5-fff00e2280fc",
+               "name": "Prof. Cristina Koch V",
+               "number": "612161",
+               "price_per_minute": 36.12,
+               "photos": [],
+               "contacts": []
+             }
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/customer/appointment/{uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Appointment
+      subgroupDescription: ''
+      title: destroy
+      description: 'Remove the specified resource from storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: 'The UUID of appointment uuid'
+        required: true
+        example: fe2d4220-79ad-3143-b7a4-95acef12eff9
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: fe2d4220-79ad-3143-b7a4-95acef12eff9
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status":true,
+          "message":"Appointment deleted successfully",
+          "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/customer/room/search
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: search
+      description: 'This method is used to search rooms by category, city, country'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      type:
+        name: type
+        description: 'The type of search.'
+        required: true
+        example: 'category, city or coworking'
+        type: string
+        custom: []
+      value:
+        name: value
+        description: 'The resource uuid to search.'
+        required: true
+        example: uuid
+        type: string
+        custom: []
+    cleanBodyParameters:
+      type: 'category, city or coworking'
+      value: uuid
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "current_page": 1,
+            "data": [
+              {
+                "uuid": "c34f985c-f08a-4e34-a130-de173490fea6",
+                "name": "Annamae Smitham",
+                "number": "5",
+                "description": "Autem est facere laborum repellat blanditiis sit enim itaque. Ratione et deleniti necessitatibus incidunt quaerat excepturi ut. Hic et sapiente impedit perspiciatis.",
+                "price_per_minute": 20.74,
+                "opening_hours": [],
+                "address": {
+                  "uuid": "d33c3de5-3f1b-44c0-9c63-e61b5aa1f294",
+                  "line_1": "Rua los angeles",
+                  "line_2": "",
+                  "city": "Itaquaquecetuba",
+                  "state": "SP",
+                  "country": "BR",
+                  "zip_code": "13200-000"
+                },
+                "categories": [
+                  {
+                    "uuid": "fd882276-6ba2-4a4c-b205-e2f4aec1e3c6",
+                    "name": "Miss Anahi Stroman",
+                    "description": "Dicta ut aliquam voluptatibus in animi perferendis fuga. Consequatur non autem accusamus deleniti tempora. Rem accusamus alias quidem est. Distinctio eum quaerat vero doloremque ut."
+                  }
+                ],
+                "photos": [],
+                "contacts": []
+              },
+              {
+                "uuid": "2075e62d-2f5d-4ef5-ae95-60cd8eaf58f8",
+                "name": "Ansel Cruickshank",
+                "number": "8077108",
+                "description": "Vitae rerum ipsa omnis est quia et. Similique consequatur sequi aut. Enim similique adipisci ad labore.",
+                "price_per_minute": 73.71,
+                "opening_hours": [],
+                "address": {
+                  "uuid": "d33c3de5-3f1b-44c0-9c63-e61b5aa1f294",
+                  "line_1": "Rua los angeles",
+                  "line_2": "",
+                  "city": "Itaquaquecetuba",
+                  "state": "SP",
+                  "country": "BR",
+                  "zip_code": "13200-000"
+                },
+                "categories": [
+                  {
+                    "uuid": "fd882276-6ba2-4a4c-b205-e2f4aec1e3c6",
+                    "name": "Miss Anahi Stroman",
+                    "description": "Dicta ut aliquam voluptatibus in animi perferendis fuga. Consequatur non autem accusamus deleniti tempora. Rem accusamus alias quidem est. Distinctio eum quaerat vero doloremque ut."
+                  }
+                ],
+                "photos": [],
+                "contacts": []
+              },
+              {
+                "uuid": "14232f00-673c-4084-9239-0a808751e322",
+                "name": "Taryn Brown",
+                "number": "946439",
+                "description": "Non maxime ea illo harum quasi. Non quas dolores aut ut qui. Sit perferendis nemo dolorem ullam. Labore qui accusantium molestias.",
+                "price_per_minute": 84.68,
+                "opening_hours": [],
+                "address": {
+                  "uuid": "d33c3de5-3f1b-44c0-9c63-e61b5aa1f294",
+                  "line_1": "Rua los angeles",
+                  "line_2": "",
+                  "city": "Itaquaquecetuba",
+                  "state": "SP",
+                  "country": "BR",
+                  "zip_code": "13200-000"
+                },
+                "categories": [
+                  {
+                    "uuid": "fd882276-6ba2-4a4c-b205-e2f4aec1e3c6",
+                    "name": "Miss Anahi Stroman",
+                    "description": "Dicta ut aliquam voluptatibus in animi perferendis fuga. Consequatur non autem accusamus deleniti tempora. Rem accusamus alias quidem est. Distinctio eum quaerat vero doloremque ut."
+                  }
+                ],
+                "photos": [],
+                "contacts": []
+              }
+            ],
+            "first_page_url": "http:\/\/localhost:9000\/api\/customer\/room\/search?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http:\/\/localhost:9000\/api\/customer\/room\/search?page=1",
+            "links": [
+              {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+              },
+              {
+                "url": "http:\/\/localhost:9000\/api\/customer\/room\/search?page=1",
+                "label": "1",
+                "active": true
+              },
+              {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+              }
+            ],
+            "next_page_url": null,
+            "path": "http:\/\/localhost:9000\/api\/customer\/room\/search",
+            "per_page": 15,
+            "prev_page_url": null,
+            "to": 3,
+            "total": 3
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/customer/plan/{uuid}/attach/{customer_uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Plan
+      subgroupDescription: ''
+      title: attach
+      description: 'Attach a plan to a user.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 54b0851f-9a25-372f-9743-17dfaf7ea4ab
+        type: integer
+        custom: []
+      customer_uuid:
+        name: customer_uuid
+        description: ''
+        required: true
+        example: 8747e6f9-629e-3357-8106-556277898ed3
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 54b0851f-9a25-372f-9743-17dfaf7ea4ab
+      customer_uuid: 8747e6f9-629e-3357-8106-556277898ed3
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The uuid of the plan.'
+        required: true
+        example: 11f80443-846c-489a-91b0-3c6303779860
+        type: string
+        custom: []
+      costumer_uuid:
+        name: costumer_uuid
+        description: 'The uuid of the customer.'
+        required: true
+        example: 11f80443-846c-489a-91b0-3c6303779860
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 11f80443-846c-489a-91b0-3c6303779860
+      costumer_uuid: 11f80443-846c-489a-91b0-3c6303779860
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Plan attached successfully",
+           "data":{
+             "active":true,
+             "start_date":"2023-01-03T17:32:43.804876Z",
+             "uuid":"4e6f6f27-3918-44cf-b6dd-ae5af4cd3f09",
+             "plan":{
+               "uuid":"cb7dbfb4-7dbf-4ac6-81bf-670946768118",
+               "name":"Rosalinda Ruecker",
+               "price":"99.47",
+               "description":"Ullam maiores error voluptate et. Praesentium eos ut quaerat voluptatum occaecati in est odio. Omnis voluptas natus dicta cumque et ut recusandae. Earum earum et id labore nam odio.",
+               "trial_period_days":2,
+               "active":false
+             },
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/customer/plan/{uuid}/detach/{customer_uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Plan
+      subgroupDescription: ''
+      title: detach
+      description: 'Detach a plan from a user.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 5d43d5d8-52cb-385e-8292-ac59a36893fe
+        type: integer
+        custom: []
+      customer_uuid:
+        name: customer_uuid
+        description: ''
+        required: true
+        example: 34d3dd9d-a63e-30e5-9842-d3a03d0a3ff1
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 5d43d5d8-52cb-385e-8292-ac59a36893fe
+      customer_uuid: 34d3dd9d-a63e-30e5-9842-d3a03d0a3ff1
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The uuid of the plan.'
+        required: true
+        example: 11f80443-846c-489a-91b0-3c6303779860
+        type: string
+        custom: []
+      costumer_uuid:
+        name: costumer_uuid
+        description: 'The uuid of the customer.'
+        required: true
+        example: 11f80443-846c-489a-91b0-3c6303779860
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 11f80443-846c-489a-91b0-3c6303779860
+      costumer_uuid: 11f80443-846c-489a-91b0-3c6303779860
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Plan detached successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/customer/plan/{uuid}/update/{customer_uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Plan
+      subgroupDescription: ''
+      title: update.plan
+      description: 'Update a plan from a user.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 5f25c636-f849-37b0-9a06-1b8ac3b5f12f
+        type: integer
+        custom: []
+      customer_uuid:
+        name: customer_uuid
+        description: ''
+        required: true
+        example: cc2c48f8-727e-339d-a71e-825a92e3859a
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 5f25c636-f849-37b0-9a06-1b8ac3b5f12f
+      customer_uuid: cc2c48f8-727e-339d-a71e-825a92e3859a
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The uuid of the plan.'
+        required: true
+        example: 11f80443-846c-489a-91b0-3c6303779860
+        type: string
+        custom: []
+      costumer_uuid:
+        name: costumer_uuid
+        description: 'The uuid of the customer.'
+        required: true
+        example: 11f80443-846c-489a-91b0-3c6303779860
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 11f80443-846c-489a-91b0-3c6303779860
+      costumer_uuid: 11f80443-846c-489a-91b0-3c6303779860
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Plan updated successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/customer/user/{uuid}/card'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Card
+      subgroupDescription: ''
+      title: store
+      description: 'This resource is responsible for create a new card'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: 1
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The customer UUID.'
+        required: true
+        example: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+    bodyParameters:
+      number:
+        name: number
+        description: 'The card number.'
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      holder_name:
+        name: holder_name
+        description: 'The card owner name.'
+        required: true
+        example: 'John Doe'
+        type: string
+        custom: []
+      holder_document:
+        name: holder_document
+        description: 'The document owner.'
+        required: true
+        example: '12345678901'
+        type: string
+        custom: []
+      exp_month:
+        name: exp_month
+        description: 'The expiration month of card.'
+        required: true
+        example: 12
+        type: integer
+        custom: []
+      exp_year:
+        name: exp_year
+        description: 'The expiration year of card.'
+        required: true
+        example: 2028
+        type: integer
+        custom: []
+      cvv:
+        name: cvv
+        description: 'The cvv card.'
+        required: true
+        example: '123'
+        type: string
+        custom: []
+      brand:
+        name: brand
+        description: 'The brand card.'
+        required: true
+        example: visa
+        type: string
+        custom: []
+      billing_address_is_different:
+        name: billing_address_is_different
+        description: 'This field must be true when using an address different from the one the user registered in his account, if it is different then it will be mandatory to fill in the other fields below.'
+        required: true
+        example: true
+        type: boolean
+        custom: []
+      billing_address:
+        name: billing_address
+        description: 'The billing address.'
+        required: false
+        example: []
+        type: object
+        custom: []
+      billing_address.line_1:
+        name: billing_address.line_1
+        description: 'The billing address line 1.'
+        required: false
+        example: test
+        type: string
+        custom: []
+      billing_address.line_2:
+        name: billing_address.line_2
+        description: 'The billing address line 2.'
+        required: false
+        example: test
+        type: string
+        custom: []
+      billing_address.city:
+        name: billing_address.city
+        description: 'The billing address city.'
+        required: false
+        example: test
+        type: string
+        custom: []
+      billing_address.state:
+        name: billing_address.state
+        description: 'The billing address state.'
+        required: false
+        example: SP
+        type: string
+        custom: []
+      billing_address.country:
+        name: billing_address.country
+        description: 'The billing address country.'
+        required: false
+        example: BR
+        type: string
+        custom: []
+      billing_address.zip_code:
+        name: billing_address.zip_code
+        description: 'The billing address zip code.'
+        required: false
+        example: '12345678'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      number: consequatur
+      holder_name: 'John Doe'
+      holder_document: '12345678901'
+      exp_month: 12
+      exp_year: 2028
+      cvv: '123'
+      brand: visa
+      billing_address_is_different: true
+      billing_address:
+        line_1: test
+        line_2: test
+        city: test
+        state: SP
+        country: BR
+        zip_code: '12345678'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Card created successfully",
+            "data": {
+              "uuid": "017311f1-08d5-454c-b78b-4d79daed9447",
+              "customer_id": "cus_agLAQDLHAH7QRrwj",
+              "address_id": "addr_4XVDNnYT2Ty5vpZA",
+              "card_id": "card_GzWmq91T0ToqedJ6",
+              "first_six_digits": "542501",
+              "last_four_digits": "7793",
+              "brand": "visa",
+              "holder_name": "Luiz Felipe",
+              "holder_document": "93095135270",
+              "exp_month": "1",
+              "exp_year": "2030",
+              "status": "active",
+              "type": null,
+              "label": "Sua bandeira",
+              "card_token": "token_xYvP6Y7uluwL0JEl",
+              "user_uuid": "5b117beb-190d-43e4-b75c-4be54bac1f66"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/customer/user/{uuid}/card/{card_uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Card
+      subgroupDescription: ''
+      title: show
+      description: 'This resource is responsible for show a card'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      card_uuid:
+        name: card_uuid
+        description: ''
+        required: true
+        example: 7eab3829-07ca-3797-acff-d4ac2ac1d138
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: 1
+      card_uuid: 7eab3829-07ca-3797-acff-d4ac2ac1d138
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The customer UUID.'
+        required: true
+        example: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+        type: string
+        custom: []
+      card_uuid:
+        name: card_uuid
+        description: 'The card UUID.'
+        required: true
+        example: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+      card_uuid: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Card retrieved successfully",
+            "data": {
+              "uuid": "8d19a208-d4ae-4e39-b44c-d97a47d7d8ff",
+              "address_id": "509e6681-3aaf-32fc-8fa0-a8528765e549",
+              "first_six_digits": "883240",
+              "last_four_digits": "1530",
+              "brand": "elo",
+              "holder_name": "Verlie Rippin",
+              "holder_document": "000.000.000-00",
+              "exp_month": "09",
+              "exp_year": "1975",
+              "status": "active",
+              "type": null,
+              "label": "visa",
+              "user_uuid": "5549929c-5a13-47d2-b8dd-0f7fc619c6ee"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/customer/user/{uuid}/card/{card_uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Card
+      subgroupDescription: ''
+      title: destroy
+      description: 'This resource is responsible for delete a card'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      card_uuid:
+        name: card_uuid
+        description: ''
+        required: true
+        example: 89ba5741-3446-3d78-bd60-48b97af53a2a
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: 1
+      card_uuid: 89ba5741-3446-3d78-bd60-48b97af53a2a
+    queryParameters:
+      card_uuid:
+        name: card_uuid
+        description: 'The card UUID.'
+        required: true
+        example: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+        type: string
+        custom: []
+    cleanQueryParameters:
+      card_uuid: 31b7cce0-ca3f-48c6-93db-3cb6cb2fda72
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status": true,
+           "message": "Card deleted successfully",
+           "data": []
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/customer/billing
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Billing
+      subgroupDescription: ''
+      title: index
+      description: 'Display a listing of the resource.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "current_page": 1,
+            "data": [
+              {
+                "uuid": "4fd8fde6-01bb-4571-b9db-56def8b80d16",
+                "model_type": "App\\Models\\Appointment",
+                "model_id": 1,
+                "amount": 111,
+                "paid": "paid",
+                "payment_method": "Credit Card - Pagar.me",
+                "payment_at": "2023-01-10 23:27:21",
+                "order_id": "or_28dN9w7CLU79kDjL",
+                "order_code": "62LVFN7I4R",
+                "closed": 1,
+                "created_at": "2022-12-10T23:27:21.000000Z",
+                "updated_at": "2023-01-10T23:27:21.000000Z"
+              },
+              {
+                "uuid": "e7c21011-473c-44c7-8bc6-4c8eeb6c0255",
+                "model_type": "App\\Models\\Plan",
+                "model_id": 1,
+                "amount": 5.36,
+                "paid": "paid",
+                "payment_method": "Credit Card - Pagar.me",
+                "payment_at": "2023-01-10 23:27:21",
+                "order_id": "or_28dN9w7CLU79kDjL",
+                "order_code": "62LVFN7I4R",
+                "closed": 0,
+                "created_at": "2022-12-10T23:27:21.000000Z",
+                "updated_at": "2023-01-10T23:27:21.000000Z"
+              }
+            ],
+            "first_page_url": "http:\/\/localhost:9000\/api\/customer\/billing?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http:\/\/localhost:9000\/api\/customer\/billing?page=1",
+            "links": [
+              {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+              },
+              {
+                "url": "http:\/\/localhost:9000\/api\/customer\/billing?page=1",
+                "label": "1",
+                "active": true
+              },
+              {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+              }
+            ],
+            "next_page_url": null,
+            "path": "http:\/\/localhost:9000\/api\/customer\/billing",
+            "per_page": 30,
+            "prev_page_url": null,
+            "to": 2,
+            "total": 2
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/customer/billing/{uuid}'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: Billing
+      subgroupDescription: ''
+      title: show
+      description: 'Display the specified resource.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 00b2e393-82c5-3996-bb76-b6684666478f
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: 00b2e393-82c5-3996-bb76-b6684666478f
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The uuid of the billing.'
+        required: true
+        example: 31dfe4a7-d438-42f0-8d12-99ddaefdd498
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 31dfe4a7-d438-42f0-8d12-99ddaefdd498
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Billing retrieved successfully",
+            "data": {
+              "uuid": "31dfe4a7-d438-42f0-8d12-99ddaefdd498",
+              "model_type": "App\\Models\\Appointment",
+              "model_id": 1,
+              "amount": 67.5,
+              "paid": "paid",
+              "payment_method": "Credit Card - Pagar.me",
+              "payment_at": "2023-01-10 23:29:59",
+              "order_id": "or_28dN9w7CLU79kDjL",
+              "order_code": "62LVFN7I4R",
+              "closed": 1,
+              "created_at": "2022-12-10T23:29:59.000000Z",
+              "updated_at": "2023-01-10T23:29:59.000000Z"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/customer/{uuid}/cancel'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: cancel.account
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 37d6cc81-dd34-3358-b486-e778b60ef083
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 37d6cc81-dd34-3358-b486-e778b60ef083
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      uuid:
+        name: uuid
+        description: 'The customer uuid.'
+        required: true
+        example: '12345678901'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      uuid: '12345678901'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Customer account canceled successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/customer/{uuid}/active'
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: cancel.active
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 9acb6521-67a7-31e9-b09a-4e9f957732f0
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 9acb6521-67a7-31e9-b09a-4e9f957732f0
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      uuid:
+        name: uuid
+        description: 'The customer uuid.'
+        required: true
+        example: '12345678901'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      uuid: '12345678901'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Customer account activated successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/customer/store
+    metadata:
+      groupName: Customer
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: store
+      description: 'Store a newly created resource in storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The customer name.'
+        required: true
+        example: 'John Doe'
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'The customer email. Example:'
+        required: true
+        example: abernathy.porter@example.com
+        type: string
+        custom: []
+      document:
+        name: document
+        description: 'The customer document.'
+        required: true
+        example: '12345678901'
+        type: string
+        custom: []
+      document_type:
+        name: document_type
+        description: 'The customer document type.'
+        required: true
+        example: 'cpf or cnpj'
+        type: string
+        custom: []
+      gender:
+        name: gender
+        description: 'The gender type.'
+        required: true
+        example: 'male or female'
+        type: string
+        custom: []
+      birth_date:
+        name: birth_date
+        description: 'Must be a valid date.'
+        required: true
+        example: '2023-01-23T16:16:21'
+        type: string
+        custom: []
+      phones:
+        name: phones
+        description: 'The phone object.'
+        required: true
+        example: []
+        type: object
+        custom: []
+      phones.home_phone:
+        name: phones.home_phone
+        description: ''
+        required: true
+        example: []
+        type: object
+        custom: []
+      phones.home_phone.country_code:
+        name: phones.home_phone.country_code
+        description: 'The country code.'
+        required: true
+        example: '55'
+        type: string
+        custom: []
+      phones.home_phone.area_code:
+        name: phones.home_phone.area_code
+        description: 'The area code.'
+        required: true
+        example: '11'
+        type: string
+        custom: []
+      phones.home_phone.number:
+        name: phones.home_phone.number
+        description: 'The number.'
+        required: true
+        example: '999999999'
+        type: string
+        custom: []
+      phones.mobile_phone:
+        name: phones.mobile_phone
+        description: ''
+        required: true
+        example: []
+        type: object
+        custom: []
+      phones.mobile_phone.country_code:
+        name: phones.mobile_phone.country_code
+        description: 'The country code.'
+        required: true
+        example: '55'
+        type: string
+        custom: []
+      phones.mobile_phone.area_code:
+        name: phones.mobile_phone.area_code
+        description: 'The area code.'
+        required: true
+        example: '11'
+        type: string
+        custom: []
+      phones.mobile_phone.number:
+        name: phones.mobile_phone.number
+        description: 'The number.'
+        required: true
+        example: '999999999'
+        type: string
+        custom: []
+      health_advice:
+        name: health_advice
+        description: 'The health advice.'
+        required: true
+        example: 'CRM, CRP, etc.'
+        type: string
+        custom: []
+      advice_code:
+        name: advice_code
+        description: 'The advice code.'
+        required: true
+        example: '884455'
+        type: string
+        custom: []
+      address:
+        name: address
+        description: 'The address object.'
+        required: true
+        example: []
+        type: object
+        custom: []
+      address.line_1:
+        name: address.line_1
+        description: 'The line 1.'
+        required: true
+        example: 'Rua dos Bobos'
+        type: string
+        custom: []
+      address.line_2:
+        name: address.line_2
+        description: 'The line 2.'
+        required: true
+        example: 'nº 0'
+        type: string
+        custom: []
+      address.city:
+        name: address.city
+        description: 'The city.'
+        required: true
+        example: 'São Paulo'
+        type: string
+        custom: []
+      address.state:
+        name: address.state
+        description: 'The state.'
+        required: true
+        example: SP
+        type: string
+        custom: []
+      address.country:
+        name: address.country
+        description: 'The country.'
+        required: true
+        example: Brasil
+        type: string
+        custom: []
+      address.zip_code:
+        name: address.zip_code
+        description: 'The zip code.'
+        required: true
+        example: '12345678'
+        type: string
+        custom: []
+      birthdate:
+        name: birthdate
+        description: 'The birthdate.'
+        required: true
+        example: '1990-01-01'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: 'John Doe'
+      email: abernathy.porter@example.com
+      document: '12345678901'
+      document_type: 'cpf or cnpj'
+      gender: 'male or female'
+      birth_date: '2023-01-23T16:16:21'
+      phones:
+        home_phone:
+          country_code: '55'
+          area_code: '11'
+          number: '999999999'
+        mobile_phone:
+          country_code: '55'
+          area_code: '11'
+          number: '999999999'
+      health_advice: 'CRM, CRP, etc.'
+      advice_code: '884455'
+      address:
+        line_1: 'Rua dos Bobos'
+        line_2: 'nº 0'
+        city: 'São Paulo'
+        state: SP
+        country: Brasil
+        zip_code: '12345678'
+      birthdate: '1990-01-01'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status":true,
+          "message":"Customer created successfully",
+          "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

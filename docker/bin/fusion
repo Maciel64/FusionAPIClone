@@ -1,0 +1,486 @@
+#!/usr/bin/env bash
+
+UNAMEOUT="$(uname -s)"
+
+# Verify operating system is supported...
+case "${UNAMEOUT}" in
+    Linux*)             MACHINE=linux;;
+    Darwin*)            MACHINE=mac;;
+    *)                  MACHINE="UNKNOWN"
+esac
+
+if [ "$MACHINE" == "UNKNOWN" ]; then
+    echo "Unsupported operating system [$(uname -s)]. Fusion api supports macOS, Linux, and Windows (WSL2)." >&2
+
+    exit 1
+fi
+
+# Determine if stdout is a terminal...
+if test -t 1; then
+    # Determine if colors are supported...
+    ncolors=$(tput colors)
+
+    if test -n "$ncolors" && test "$ncolors" -ge 8; then
+        BOLD="$(tput bold)"
+        YELLOW="$(tput setaf 3)"
+        GREEN="$(tput setaf 2)"
+        NC="$(tput sgr0)"
+    fi
+fi
+
+# Function that prints the available commands...
+function display_help {
+    echo "Laravel Fusion"
+    echo
+    echo "${YELLOW}Usage:${NC}" >&2
+    echo "  fusion COMMAND [options] [arguments]"
+    echo
+    echo "Unknown commands are passed to the docker-compose binary."
+    echo
+    echo "${YELLOW}docker-compose Commands:${NC}"
+    echo "  ${GREEN}fusion up${NC}        Start the application"
+    echo "  ${GREEN}fusion up -d${NC}     Start the application in the background"
+    echo "  ${GREEN}fusion stop${NC}      Stop the application"
+    echo "  ${GREEN}fusion restart${NC}   Restart the application"
+    echo "  ${GREEN}fusion ps${NC}        Display the status of all containers"
+    echo
+    echo "${YELLOW}Artisan Commands:${NC}"
+    echo "  ${GREEN}fusion artisan ...${NC}          Run an Artisan command"
+    echo "  ${GREEN}fusion artisan queue:work${NC}"
+    echo
+    echo "${YELLOW}PHP Commands:${NC}"
+    echo "  ${GREEN}fusion php ...${NC}   Run a snippet of PHP code"
+    echo "  ${GREEN}fusion php -v${NC}"
+    echo
+    echo "${YELLOW}Composer Commands:${NC}"
+    echo "  ${GREEN}fusion composer ...${NC}                       Run a Composer command"
+    echo "  ${GREEN}fusion composer require laravel/sanctum${NC}"
+    echo
+    echo "${YELLOW}Node Commands:${NC}"
+    echo "  ${GREEN}fusion node ...${NC}         Run a Node command"
+    echo "  ${GREEN}fusion node --version${NC}"
+    echo
+    echo "${YELLOW}NPM Commands:${NC}"
+    echo "  ${GREEN}fusion npm ...${NC}        Run a npm command"
+    echo "  ${GREEN}fusion npx${NC}            Run a npx command"
+    echo "  ${GREEN}fusion npm run prod${NC}"
+    echo
+    echo "${YELLOW}Yarn Commands:${NC}"
+    echo "  ${GREEN}fusion yarn ...${NC}        Run a Yarn command"
+    echo "  ${GREEN}fusion yarn run prod${NC}"
+    echo
+    echo "${YELLOW}Database Commands:${NC}"
+    echo "  ${GREEN}fusion mysql${NC}     Start a MySQL CLI session within the 'mysql' container"
+    echo "  ${GREEN}fusion mariadb${NC}   Start a MySQL CLI session within the 'mariadb' container"
+    echo "  ${GREEN}fusion psql${NC}      Start a PostgreSQL CLI session within the 'pgsql' container"
+    echo "  ${GREEN}fusion redis${NC}     Start a Redis CLI session within the 'redis' container"
+    echo
+    echo "${YELLOW}Debugging:${NC}"
+    echo "  ${GREEN}fusion debug ...${NC}          Run an Artisan command in debug mode"
+    echo "  ${GREEN}fusion debug queue:work${NC}"
+    echo
+    echo "${YELLOW}Running Tests:${NC}"
+    echo "  ${GREEN}fusion test${NC}          Run the PHPUnit tests via the Artisan test command"
+    echo "  ${GREEN}fusion phpunit ...${NC}   Run PHPUnit"
+    echo "  ${GREEN}fusion pint ...${NC}      Run Pint"
+    echo "  ${GREEN}fusion dusk${NC}          Run the Dusk tests (Requires the laravel/dusk package)"
+    echo "  ${GREEN}fusion dusk:fails${NC}    Re-run previously failed Dusk tests (Requires the laravel/dusk package)"
+    echo
+    echo "${YELLOW}Container CLI:${NC}"
+    echo "  ${GREEN}fusion shell${NC}        Start a shell session within the application container"
+    echo "  ${GREEN}fusion bash${NC}         Alias for 'fusion shell'"
+    echo "  ${GREEN}fusion root-shell${NC}   Start a root shell session within the application container"
+    echo "  ${GREEN}fusion root-bash${NC}    Alias for 'fusion root-shell'"
+    echo "  ${GREEN}fusion tinker${NC}       Start a new Laravel Tinker session"
+    echo
+    echo "${YELLOW}Sharing:${NC}"
+    echo "  ${GREEN}fusion share${NC}   Share the application publicly via a temporary URL"
+    echo
+    echo "${YELLOW}Binaries:${NC}"
+    echo "  ${GREEN}fusion bin ...${NC}   Run Composer binary scripts from the vendor/bin directory"
+    echo
+    echo "${YELLOW}Customization:${NC}"
+    echo "  ${GREEN}fusion artisan fusion:publish${NC}   Publish the Fusion configuration files"
+    echo "  ${GREEN}fusion build --no-cache${NC}       Rebuild all of the Fusion containers"
+
+    exit 1
+}
+
+# Proxy the "help" command...
+if [ $# -gt 0 ]; then
+    if [ "$1" == "help" ] || [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ]; then
+        display_help
+    fi
+else
+    display_help
+fi
+
+# Source the ".env" file so Laravel's environment variables are available...
+if [ -f ./.env ]; then
+    source ./.env
+fi
+
+# Define environment variables...
+export APP_PORT=${APP_PORT:-80}
+export APP_SERVICE=${APP_SERVICE:-"fusion_api"}
+export DB_PORT=${DB_PORT:-3306}
+export WWWUSER=${WWWUSER:-$UID}
+export WWWGROUP=${WWWGROUP:-$(id -g)}
+
+export FUSION_FILES=${FUSION_FILES:-""}
+export FUSION_SHARE_DASHBOARD=${FUSION_SHARE_DASHBOARD:-4040}
+export FUSION_SHARE_SERVER_HOST=${FUSION_SHARE_SERVER_HOST:-"laravel-fusion.site"}
+export FUSION_SHARE_SERVER_PORT=${FUSION_SHARE_SERVER_PORT:-8080}
+export FUSION_SHARE_SUBDOMAIN=${FUSION_SHARE_SUBDOMAIN:-""}
+
+# Function that outputs Fusion is not running...
+function fusion_is_not_running {
+    echo "${BOLD}Fusion is not running.${NC}" >&2
+    echo "" >&2
+    echo "${BOLD}You may Fusion using the following commands:${NC} './docker/bin/fusion up' or './docker/bin/fusion up -d'" >&2
+
+    exit 1
+}
+
+# Define Docker Compose command prefix...
+docker compose &> /dev/null
+if [ $? == 0 ]; then
+    DOCKER_COMPOSE=(docker compose)
+else
+    DOCKER_COMPOSE=(docker-compose)
+fi
+
+if [ -n "$FUSION_FILES" ]; then
+    # Convert FUSION_FILES to an array...
+    IFS=':' read -ra FUSION_FILES <<< "$FUSION_FILES"
+
+    for FILE in "${FUSION_FILES[@]}"; do
+        if [ -f "$FILE" ]; then
+            DOCKER_COMPOSE+=(-f "$FILE")
+        else
+            echo "${BOLD}Unable to find Docker Compose file: '${FILE}'${NC}" >&2
+
+            exit 1
+        fi
+    done
+fi
+
+EXEC="yes"
+
+if [ -z "$FUSION_SKIP_CHECKS" ]; then
+    # Ensure that Docker is running...
+    if ! docker info > /dev/null 2>&1; then
+        echo "${BOLD}Docker is not running.${NC}" >&2
+
+        exit 1
+    fi
+
+    # Determine if Fusion is currently up...
+    if "${DOCKER_COMPOSE[@]}" ps "$APP_SERVICE" 2>&1 | grep 'Exit\|exited'; then
+        echo "${BOLD}Shutting down old Fusion processes...${NC}" >&2
+
+        "${DOCKER_COMPOSE[@]}" down > /dev/null 2>&1
+
+        EXEC="no"
+    elif [ -z "$("${DOCKER_COMPOSE[@]}" ps -q)" ]; then
+        EXEC="no"
+    fi
+fi
+
+ARGS=()
+
+# Proxy PHP commands to the "php" binary on the application container...
+if [ "$1" == "php" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" "php" "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy vendor binary commands on the application container...
+elif [ "$1" == "bin" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" ./vendor/bin/"$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy docker-compose commands to the docker-compose binary on the application container...
+elif [ "$1" == "docker-compose" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" "${DOCKER_COMPOSE[@]}")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy Composer commands to the "composer" binary on the application container...
+elif [ "$1" == "composer" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" "composer" "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy Artisan commands to the "artisan" binary on the application container...
+elif [ "$1" == "artisan" ] || [ "$1" == "art" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" php artisan "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy the "debug" command to the "php artisan" binary on the application container with xdebug enabled...
+elif [ "$1" == "debug" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion -e XDEBUG_SESSION=1)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" php artisan "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy the "test" command to the "php artisan test" Artisan command...
+elif [ "$1" == "test" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" php artisan test "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy the "phpunit" command to "php vendor/bin/phpunit"...
+elif [ "$1" == "phpunit" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" php vendor/bin/phpunit "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy the "pint" command to "php vendor/bin/pint"...
+elif [ "$1" == "pint" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" php vendor/bin/pint "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy the "dusk" command to the "php artisan dusk" Artisan command...
+elif [ "$1" == "dusk" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(-e "APP_URL=http://${APP_SERVICE}")
+        ARGS+=(-e "DUSK_DRIVER_URL=http://selenium:4444/wd/hub")
+        ARGS+=("$APP_SERVICE" php artisan dusk "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy the "dusk:fails" command to the "php artisan dusk:fails" Artisan command...
+elif [ "$1" == "dusk:fails" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(-e "APP_URL=http://${APP_SERVICE}")
+        ARGS+=(-e "DUSK_DRIVER_URL=http://selenium:4444/wd/hub")
+        ARGS+=("$APP_SERVICE" php artisan dusk:fails "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a Laravel Tinker session within the application container...
+elif [ "$1" == "tinker" ] ; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" php artisan tinker)
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy Node commands to the "node" binary on the application container...
+elif [ "$1" == "node" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" node "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy NPM commands to the "npm" binary on the application container...
+elif [ "$1" == "npm" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" npm "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy NPX commands to the "npx" binary on the application container...
+elif [ "$1" == "npx" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" npx "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Proxy YARN commands to the "yarn" binary on the application container...
+elif [ "$1" == "yarn" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" yarn "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a MySQL CLI terminal session within the "mysql" container...
+elif [ "$1" == "mysql" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(mysql bash -c)
+        ARGS+=("MYSQL_PWD=\${MYSQL_PASSWORD} mysql -u \${MYSQL_USER} \${MYSQL_DATABASE}")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a MySQL CLI terminal session within the "mariadb" container...
+elif [ "$1" == "mariadb" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(mariadb bash -c)
+        ARGS+=("MYSQL_PWD=\${MYSQL_PASSWORD} mysql -u \${MYSQL_USER} \${MYSQL_DATABASE}")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a PostgreSQL CLI terminal session within the "pgsql" container...
+elif [ "$1" == "psql" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(pgsql bash -c)
+        ARGS+=("PGPASSWORD=\${PGPASSWORD} psql -U \${POSTGRES_USER} \${POSTGRES_DB}")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a Bash shell within the application container...
+elif [ "$1" == "shell" ] || [ "$1" == "bash" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec -u fusion)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" bash "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a root user Bash shell within the application container...
+elif [ "$1" == "root-shell" ] || [ "$1" == "root-bash" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$APP_SERVICE" bash "$@")
+    else
+        fusion_is_not_running
+    fi
+
+# Initiate a Redis CLI terminal session within the "redis" container...
+elif [ "$1" == "redis" ] ; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(redis redis-cli)
+    else
+        fusion_is_not_running
+    fi
+
+# Share the site...
+elif [ "$1" == "share" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        docker run --init --rm -p "$FUSION_SHARE_DASHBOARD":4040 -t beyondcodegmbh/expose-server:latest share http://host.docker.internal:"$APP_PORT" \
+            --server-host="$FUSION_SHARE_SERVER_HOST" \
+            --server-port="$FUSION_SHARE_SERVER_PORT" \
+            --auth="$FUSION_SHARE_TOKEN" \
+            --subdomain="$FUSION_SHARE_SUBDOMAIN" \
+            "$@"
+
+        exit
+    else
+        fusion_is_not_running
+    fi
+
+# Pass unknown commands to the "docker-compose" binary...
+else
+    ARGS+=("$@")
+fi
+
+# Run Docker Compose with the defined arguments...
+"${DOCKER_COMPOSE[@]}" "${ARGS[@]}"

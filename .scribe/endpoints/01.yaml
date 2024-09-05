@@ -1,0 +1,176 @@
+name: User
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/fusion/user/{uuid}'
+    metadata:
+      groupName: User
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: update
+      description: 'Update the specified resource in storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: 1
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'User UUID.'
+        required: true
+        example: f7387b46-e4e2-49bc-b23a-4fe7eba8137a
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: f7387b46-e4e2-49bc-b23a-4fe7eba8137a
+    bodyParameters:
+      name:
+        name: name
+        description: 'User name.'
+        required: false
+        example: 'John Doe'
+        type: string
+        custom: []
+      phone:
+        name: phone
+        description: 'Phone number.'
+        required: false
+        example: '11999999999'
+        type: string
+        custom: []
+      birth_date:
+        name: birth_date
+        description: 'Birth date.'
+        required: false
+        example: '1990-01-01'
+        type: date
+        custom: []
+      email:
+        name: email
+        description: 'User email.'
+        required: false
+        example: john.doe@fusion.com
+        type: string
+        custom: []
+      password:
+        name: password
+        description: Password.
+        required: false
+        example: '123456'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: 'John Doe'
+      phone: '11999999999'
+      birth_date: '1990-01-01'
+      email: john.doe@fusion.com
+      password: '123456'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "User updated successfully",
+            "data": {
+              "uuid": "0841d4bd-bbd4-45d8-b0fa-b9fd707df23f",
+              "name": "John Doe Updated",
+              "document_type": "cpf",
+              "document": "",
+              "gender": null,
+              "birth_date": "1998-05-22",
+              "email": "alanna.champlin@example.org",
+              "last_access": null,
+              "role_name": null,
+              "photo": null,
+              "address": null,
+              "schedule": null,
+              "advice": null,
+              "contacts": []
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/auth/email/verification-notice
+    metadata:
+      groupName: User
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: verification.notice
+      description: 'When a user tries to access a route without being verified'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 302
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 302
+        content: |-
+          <!DOCTYPE html>
+          <html>
+              <head>
+                  <meta charset="UTF-8" />
+                  <meta http-equiv="refresh" content="0;url='http://localhost:3000/auth/email/verify-notice'" />
+
+                  <title>Redirecting to http://localhost:3000/auth/email/verify-notice</title>
+              </head>
+              <body>
+                  Redirecting to <a href="http://localhost:3000/auth/email/verify-notice">http://localhost:3000/auth/email/verify-notice</a>.
+              </body>
+          </html>
+        headers:
+          cache-control: 'no-cache, private'
+          location: 'http://localhost:3000/auth/email/verify-notice'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

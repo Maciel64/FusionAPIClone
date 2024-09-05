@@ -1,0 +1,1734 @@
+name: Partner
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/partner/coworking
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: index
+      description: 'This method is used to list all coworkings by user'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Coworking list retrieved successfully",
+            "data": [
+              {
+                "uuid": "a2c5ff3c-66e5-438b-a1d2-0864714fadcf",
+                "name": "Grace Jenkins IV",
+                "description": "Corrupti distinctio consequatur consequatur id labore eaque iusto. Est vel quis illo. Blanditiis id molestiae dignissimos eos consequatur incidunt aut.",
+                "photos": {
+                  "current_page": 1,
+                  "data": [],
+                  "first_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking?page=1",
+                  "from": null,
+                  "last_page": 1,
+                  "last_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking?page=1",
+                  "links": [
+                    {
+                      "url": null,
+                      "label": "&laquo; Previous",
+                      "active": false
+                    },
+                    {
+                      "url": "http:\/\/localhost:9000\/api\/partner\/coworking?page=1",
+                      "label": "1",
+                      "active": true
+                    },
+                    {
+                      "url": null,
+                      "label": "Next &raquo;",
+                      "active": false
+                    }
+                  ],
+                  "next_page_url": null,
+                  "path": "http:\/\/localhost:9000\/api\/partner\/coworking",
+                  "per_page": 30,
+                  "prev_page_url": null,
+                  "to": null,
+                  "total": 0
+                },
+                "address": null,
+                "opening_hours": [],
+                "schedule_uuid": null,
+                "contacts": []
+              },
+              {
+                "uuid": "b2235a14-643c-42e1-8e5b-40c9ac36b844",
+                "name": "Sydney Wilkinson",
+                "description": "Delectus ipsa occaecati omnis mollitia doloribus sint facere. Maiores non qui ut dolorum dolorum distinctio consequatur. Et dolores sapiente delectus hic a. Incidunt perspiciatis itaque ut quae est.",
+                "photos": {
+                  "current_page": 1,
+                  "data": [],
+                  "first_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking?page=1",
+                  "from": null,
+                  "last_page": 1,
+                  "last_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking?page=1",
+                  "links": [
+                    {
+                      "url": null,
+                      "label": "&laquo; Previous",
+                      "active": false
+                    },
+                    {
+                      "url": "http:\/\/localhost:9000\/api\/partner\/coworking?page=1",
+                      "label": "1",
+                      "active": true
+                    },
+                    {
+                      "url": null,
+                      "label": "Next &raquo;",
+                      "active": false
+                    }
+                  ],
+                  "next_page_url": null,
+                  "path": "http:\/\/localhost:9000\/api\/partner\/coworking",
+                  "per_page": 30,
+                  "prev_page_url": null,
+                  "to": null,
+                  "total": 0
+                },
+                "address": null,
+                "opening_hours": [],
+                "schedule_uuid": null,
+                "contacts": []
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/partner/coworking/{uuid}'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: show
+      description: 'This method is used to show a coworking by uuid'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: ee2af708-69b6-3b23-9a4c-aad0e41b07d0
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: ee2af708-69b6-3b23-9a4c-aad0e41b07d0
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Coworking retrieved successfully",
+            "data": {
+              "uuid": "9f022787-b8a1-4382-9d5b-ca79027e9dbc",
+              "name": "April Mills",
+              "description": "Sed voluptas et pariatur neque omnis. Porro est nesciunt deleniti eum et. Veritatis saepe veritatis totam qui suscipit molestiae.",
+              "photos": {
+                "current_page": 1,
+                "data": [],
+                "first_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking\/9f022787-b8a1-4382-9d5b-ca79027e9dbc?page=1",
+                "from": null,
+                "last_page": 1,
+                "last_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking\/9f022787-b8a1-4382-9d5b-ca79027e9dbc?page=1",
+                "links": [
+                  {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                  },
+                  {
+                    "url": "http:\/\/localhost:9000\/api\/partner\/coworking\/9f022787-b8a1-4382-9d5b-ca79027e9dbc?page=1",
+                    "label": "1",
+                    "active": true
+                  },
+                  {
+                    "url": null,
+                    "label": "Next &raquo;",
+                    "active": false
+                  }
+                ],
+                "next_page_url": null,
+                "path": "http:\/\/localhost:9000\/api\/partner\/coworking\/9f022787-b8a1-4382-9d5b-ca79027e9dbc",
+                "per_page": 30,
+                "prev_page_url": null,
+                "to": null,
+                "total": 0
+              },
+              "address": null,
+              "opening_hours": [],
+              "schedule_uuid": null,
+              "contacts": []
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/partner/coworking/{uuid}'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: update
+      description: 'This method is used to update a coworking by uuid'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: d6d16234-bc33-3c62-9001-f9218a48294a
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: d6d16234-bc33-3c62-9001-f9218a48294a
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters:
+      name:
+        name: name
+        description: 'The coworking name.'
+        required: true
+        example: 'Coworking Test'
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'The coworking description.'
+        required: true
+        example: 'Coworking Test'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: 'Coworking Test'
+      description: 'Coworking Test'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Coworking updated successfully",
+            "data": {
+              "uuid": "e9e7f8a3-b4e8-4793-bf91-d8e6152400a0",
+              "name": "Coworking Test Updated",
+              "description": "Coworking Test Updated",
+              "photos": {
+                "current_page": 1,
+                "data": [],
+                "first_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking\/e9e7f8a3-b4e8-4793-bf91-d8e6152400a0?page=1",
+                "from": null,
+                "last_page": 1,
+                "last_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking\/e9e7f8a3-b4e8-4793-bf91-d8e6152400a0?page=1",
+                "links": [
+                  {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                  },
+                  {
+                    "url": "http:\/\/localhost:9000\/api\/partner\/coworking\/e9e7f8a3-b4e8-4793-bf91-d8e6152400a0?page=1",
+                    "label": "1",
+                    "active": true
+                  },
+                  {
+                    "url": null,
+                    "label": "Next &raquo;",
+                    "active": false
+                  }
+                ],
+                "next_page_url": null,
+                "path": "http:\/\/localhost:9000\/api\/partner\/coworking\/e9e7f8a3-b4e8-4793-bf91-d8e6152400a0",
+                "per_page": 30,
+                "prev_page_url": null,
+                "to": null,
+                "total": 0
+              },
+              "address": null,
+              "opening_hours": [],
+              "schedule_uuid": null,
+              "contacts": []
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/partner/coworking/{uuid}'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: destroy
+      description: 'This method is used to delete a coworking by uuid'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: b85c3d0d-1508-3f7c-9437-03c7a758802f
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: b85c3d0d-1508-3f7c-9437-03c7a758802f
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Coworking deleted successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/partner/coworking/{coworking_uuid}/room'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: index
+      description: 'This method is used to list all rooms by coworking'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 72f8e2a8-b178-313b-bb39-e538ed17d60d
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 72f8e2a8-b178-313b-bb39-e538ed17d60d
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The uuid of the coworking'
+        required: true
+        example: 29f635ea-917b-34b3-96fc-f4f37fa107dc
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 29f635ea-917b-34b3-96fc-f4f37fa107dc
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status": true,
+           "message": "Room list retrieved successfully",
+           "data": {
+             "current_page": 1,
+             "data": [
+               {
+                 "uuid": "dec41514-25a3-4080-8875-c9847b56db91",
+                 "name": "Amelia Bergstrom",
+                 "number": "382420111",
+                 "description": "Iusto consequuntur odio maiores occaecati quisquam perspiciatis iusto quas. Aliquam dolorem explicabo laboriosam id et. Voluptas ut pariatur molestias.",
+                 "price_per_minute": 50.19,
+                 "opening_hours": [],
+                 "address": null,
+                 "categories": [],
+                 "photos": [],
+                 "contacts": []
+               },
+               {
+                 "uuid": "49449299-2b86-4918-bd55-ce0a50d67f2f",
+                 "name": "Zane Heidenreich",
+                 "number": "93855346",
+                 "description": "Accusantium et repudiandae eos qui odit aut sequi. Sit quasi voluptatum cumque. Perferendis ut qui eius ratione quia beatae. Quia sunt fuga fuga.",
+                 "price_per_minute": 27.7,
+                 "opening_hours": [],
+                 "address": null,
+                 "categories": [],
+                 "photos": [],
+                 "contacts": []
+               }
+             ],
+             "first_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking\/a6a30696-e76b-4fea-8b5e-f1fd044e1aab\/room?page=1",
+             "from": 1,
+             "last_page": 1,
+             "last_page_url": "http:\/\/localhost:9000\/api\/partner\/coworking\/a6a30696-e76b-4fea-8b5e-f1fd044e1aab\/room?page=1",
+             "links": [
+               {
+                 "url": null,
+                 "label": "&laquo; Previous",
+                 "active": false
+               },
+               {
+                 "url": "http:\/\/localhost:9000\/api\/partner\/coworking\/a6a30696-e76b-4fea-8b5e-f1fd044e1aab\/room?page=1",
+                 "label": "1",
+                 "active": true
+               },
+               {
+                 "url": null,
+                 "label": "Next &raquo;",
+                 "active": false
+               }
+             ],
+             "next_page_url": null,
+             "path": "http:\/\/localhost:9000\/api\/partner\/coworking\/a6a30696-e76b-4fea-8b5e-f1fd044e1aab\/room",
+             "per_page": 15,
+             "prev_page_url": null,
+             "to": 2,
+             "total": 2
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/partner/coworking/{coworking_uuid}/room'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: store
+      description: 'This Method is used to create a new room'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 2129ed18-29e4-3b41-acd1-d9e9158c614a
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 2129ed18-29e4-3b41-acd1-d9e9158c614a
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The uuid of the coworking'
+        required: true
+        example: 22dff282-211d-3c79-8d55-4143c7126c74
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 22dff282-211d-3c79-8d55-4143c7126c74
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the room'
+        required: true
+        example: assumenda
+        type: string
+        custom: []
+      number:
+        name: number
+        description: 'The number of the room'
+        required: true
+        example: nesciunt
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'The description of the room'
+        required: true
+        example: 'Sed unde libero iusto eos mollitia pariatur.'
+        type: string
+        custom: []
+      price_per_minute:
+        name: price_per_minute
+        description: 'The price per minute of the room'
+        required: true
+        example: 43552397.206385
+        type: number
+        custom: []
+    cleanBodyParameters:
+      name: assumenda
+      number: nesciunt
+      description: 'Sed unde libero iusto eos mollitia pariatur.'
+      price_per_minute: 43552397.206385
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Room created successfully",
+            "data": {
+              "name": "Room 1",
+              "number": "1A",
+              "description": "Room 1 description",
+              "price_per_minute": 5.8,
+              "uuid": "62277cb6-60c4-42b9-a13a-a754b964be10",
+              "opening_hours": [],
+              "address": null,
+              "categories": [],
+              "photos": [],
+              "contacts": []
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/partner/coworking/{coworking_uuid}/room/{uuid}'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: update
+      description: 'Update the specified resource in storage.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 97605542-02f2-3acc-9dc9-1dde9cd0c493
+        type: integer
+        custom: []
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: ad290236-c339-344d-a688-f252f58a0a72
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 97605542-02f2-3acc-9dc9-1dde9cd0c493
+      uuid: ad290236-c339-344d-a688-f252f58a0a72
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The uuid of the coworking'
+        required: true
+        example: c2df1d2c-c922-3f7e-ac97-7301646c6249
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The uuid of the room'
+        required: true
+        example: 55f508a9-d144-39a7-8366-599cb911277f
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: c2df1d2c-c922-3f7e-ac97-7301646c6249
+      uuid: 55f508a9-d144-39a7-8366-599cb911277f
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the room'
+        required: true
+        example: officiis
+        type: string
+        custom: []
+      number:
+        name: number
+        description: 'The number of the room'
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'The description of the room'
+        required: true
+        example: 'Illo dicta iste sit vel illo velit dolores.'
+        type: string
+        custom: []
+      price_per_minute:
+        name: price_per_minute
+        description: 'The price per minute of the room'
+        required: true
+        example: 1920497.7616414
+        type: number
+        custom: []
+    cleanBodyParameters:
+      name: officiis
+      number: consequatur
+      description: 'Illo dicta iste sit vel illo velit dolores.'
+      price_per_minute: 1920497.7616414
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Room updated successfully",
+            "data": {
+              "uuid": "72deb73b-8bde-4e27-9189-d58df392f98b",
+              "name": "Room 1",
+              "number": "1A",
+              "description": "Room 1 description",
+              "price_per_minute": 16.43,
+              "opening_hours": [],
+              "address": null,
+              "categories": [],
+              "photos": [],
+              "contacts": []
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/partner/coworking/{coworking_uuid}/room/{uuid}'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: destroy
+      description: 'Remove the specified resource from storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: d5451e34-d3a6-3381-959f-eda5a746f5ee
+        type: integer
+        custom: []
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 2fc47237-3424-33ee-99e2-5f20c840d446
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: d5451e34-d3a6-3381-959f-eda5a746f5ee
+      uuid: 2fc47237-3424-33ee-99e2-5f20c840d446
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The uuid of the coworking'
+        required: true
+        example: f4deeb4b-6bfb-337c-8ebb-5a8892713a9f
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The uuid of the room'
+        required: true
+        example: 5bedbbfd-ea10-3652-a96a-f3024bba18df
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: f4deeb4b-6bfb-337c-8ebb-5a8892713a9f
+      uuid: 5bedbbfd-ea10-3652-a96a-f3024bba18df
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Room deleted successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/partner/coworking/{coworking_uuid}/opening-hour'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: opening.hours.index
+      description: 'Display a listing of the resource.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 2645b51b-2150-3219-bb29-0c0e1e3d7367
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 2645b51b-2150-3219-bb29-0c0e1e3d7367
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Coworking Opening Hours list retrieved successfully",
+            "data": [
+              {
+                "uuid": "ee151c21-e4a3-47bc-a193-00cc8e9225ef",
+                "day_of_week": "monday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              },
+              {
+                "uuid": "b0b41b8b-613c-4f14-a18d-c7854fca1646",
+                "day_of_week": "tuesday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              },
+              {
+                "uuid": "fb6a15e6-0ef0-41c1-b715-6005a894588e",
+                "day_of_week": "wednesday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              },
+              {
+                "uuid": "2acfbf9e-e218-4a06-b5a3-c47f7dc2e2f7",
+                "day_of_week": "thursday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              },
+              {
+                "uuid": "a17bc38d-3735-4109-a5eb-f4c2c9477f3b",
+                "day_of_week": "friday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              },
+              {
+                "uuid": "057f5e6d-7013-4a7d-90ce-8f62f0a7e1a1",
+                "day_of_week": "saturday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              },
+              {
+                "uuid": "627cb865-4163-4b0e-a45a-5ca391a6d392",
+                "day_of_week": "sunday",
+                "opening": "08:00:00",
+                "closing": "18:00:00"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/partner/coworking/{coworking_uuid}/opening-hour'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: opening.hours.store
+      description: 'Store a newly created resource in storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: ef6ed343-0c0b-3da9-982c-3fcd06d0d6ca
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: ef6ed343-0c0b-3da9-982c-3fcd06d0d6ca
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters:
+      settings:
+        name: settings
+        description: 'The settings object.'
+        required: true
+        example: []
+        type: object
+        custom: []
+      'settings[].day_of_week':
+        name: 'settings[].day_of_week'
+        description: ''
+        required: true
+        example: dolor
+        type: string
+        custom: []
+      'settings[].opening':
+        name: 'settings[].opening'
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '16:16'
+        type: string
+        custom: []
+      'settings[].closing':
+        name: 'settings[].closing'
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '16:16'
+        type: string
+        custom: []
+      settings.day_of_week:
+        name: settings.day_of_week
+        description: 'The day of week.'
+        required: true
+        example: monday
+        type: string
+        custom: []
+      settings.opening:
+        name: settings.opening
+        description: 'The opening time.'
+        required: true
+        example: '08:00:00'
+        type: string
+        custom: []
+      settings.closing:
+        name: settings.closing
+        description: 'The closing time.'
+        required: true
+        example: '18:00:00'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      settings:
+        0:
+          day_of_week: dolor
+          opening: '16:16'
+          closing: '16:16'
+        day_of_week: monday
+        opening: '08:00:00'
+        closing: '18:00:00'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Coworking Opening Hours created successfully",
+            "data": [
+              {
+                "day_of_week": "monday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "9c732acf-6c3e-4fba-9f71-d97d72f189c7"
+              },
+              {
+                "day_of_week": "tuesday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "f7997dd2-e614-4cf0-b988-3ddf3082f356"
+              },
+              {
+                "day_of_week": "wednesday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "d4c29b09-c45f-4603-903c-a68b271c3ac1"
+              },
+              {
+                "day_of_week": "thursday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "5be36083-df89-45f2-a4d9-4aef6dc751c4"
+              },
+              {
+                "day_of_week": "friday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "ae015488-1941-4038-b540-9476aa61b21a"
+              },
+              {
+                "day_of_week": "saturday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "170a8893-25af-4a84-91c3-a08dd4da879a"
+              },
+              {
+                "day_of_week": "sunday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "519e8bd2-67a9-4305-96b7-ee240f826f94"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/partner/coworking/{coworking_uuid}/opening-hour/{uuid}'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: opening.hours.destroy
+      description: 'Delete opening hours by uuid.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 73b55489-757a-3eaf-a665-3ff344c12ce8
+        type: integer
+        custom: []
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 77bf4165-512d-3370-b5ab-0df4c0802112
+        type: string
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 73b55489-757a-3eaf-a665-3ff344c12ce8
+      uuid: 77bf4165-512d-3370-b5ab-0df4c0802112
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Coworking Opening Hours deleted successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/partner/coworking/{coworking_uuid}/opening-hours/update-bulk'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: opening.hours.update.bulk
+      description: 'Update list coworking opening.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 93eafb6e-d87b-3b42-b340-cb711a7e4e3f
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 93eafb6e-d87b-3b42-b340-cb711a7e4e3f
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters:
+      settings:
+        name: settings
+        description: 'The settings object.'
+        required: true
+        example: []
+        type: object
+        custom: []
+      'settings[].uuid':
+        name: 'settings[].uuid'
+        description: ''
+        required: false
+        example: 3318f54c-2a4a-3da9-a0c2-188b96e643e8
+        type: string
+        custom: []
+      'settings[].day_of_week':
+        name: 'settings[].day_of_week'
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      'settings[].opening':
+        name: 'settings[].opening'
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '16:16'
+        type: string
+        custom: []
+      'settings[].closing':
+        name: 'settings[].closing'
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '16:16'
+        type: string
+        custom: []
+      settings.day_of_week:
+        name: settings.day_of_week
+        description: 'The day of week.'
+        required: true
+        example: monday
+        type: string
+        custom: []
+      settings.opening:
+        name: settings.opening
+        description: 'The opening time.'
+        required: true
+        example: '08:00:00'
+        type: string
+        custom: []
+      settings.closing:
+        name: settings.closing
+        description: 'The closing time.'
+        required: true
+        example: '18:00:00'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      settings:
+        0:
+          uuid: 3318f54c-2a4a-3da9-a0c2-188b96e643e8
+          day_of_week: et
+          opening: '16:16'
+          closing: '16:16'
+        day_of_week: monday
+        opening: '08:00:00'
+        closing: '18:00:00'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Coworking Opening Hours updated successfully",
+            "data": [
+              {
+                "day_of_week": "monday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "4c24ba3a-fa85-4ec9-ae4d-c2d58e5678b5"
+              },
+              {
+                "day_of_week": "tuesday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "a97b9c8b-931c-4990-8e9d-1c6d30b932b4"
+              },
+              {
+                "day_of_week": "wednesday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "ef2c7724-78bf-44e0-ba27-762c32839abf"
+              },
+              {
+                "day_of_week": "thursday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "fce31e81-93c3-48b6-af35-c790fe3f76df"
+              },
+              {
+                "day_of_week": "friday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "3e92074a-10d8-40f4-84af-b8a818c96dc3"
+              },
+              {
+                "day_of_week": "saturday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "ae85215f-3003-4bbb-b67d-6202627ae23c"
+              },
+              {
+                "day_of_week": "sunday",
+                "opening": "08:00",
+                "closing": "18:00",
+                "uuid": "76927458-05e2-4a55-9587-8792ed8551af"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/partner/coworking/{coworking_uuid}/opening-hours/destroy-bulk'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Coworking
+      subgroupDescription: ''
+      title: opening.hours.destroy.bulk
+      description: 'Delete list opening hours by uuids.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: ''
+        required: true
+        example: 4da0f103-57ea-3a69-963c-7a8321114155
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      coworking_uuid: 4da0f103-57ea-3a69-963c-7a8321114155
+    queryParameters:
+      coworking_uuid:
+        name: coworking_uuid
+        description: 'The coworking uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+    cleanQueryParameters:
+      coworking_uuid: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+    bodyParameters:
+      uuids:
+        name: uuids
+        description: 'The list uuids.'
+        required: true
+        example:
+          - quia
+        type: 'string[]'
+        custom: []
+      'uuids[0]':
+        name: 'uuids[0]'
+        description: 'The uuid.'
+        required: true
+        example: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+        type: string
+        custom: []
+      'uuids[1]':
+        name: 'uuids[1]'
+        description: 'The uuid.'
+        required: true
+        example: 2a3b4c5d-6e7f-8g9h-0i1j-2k3l4m5n6o7p
+        type: string
+        custom: []
+    cleanBodyParameters:
+      uuids:
+        - quia
+      'uuids[0]': 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+      'uuids[1]': 2a3b4c5d-6e7f-8g9h-0i1j-2k3l4m5n6o7p
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Coworking Opening Hours deleted successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/partner/room/{uuid}/attach/category'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: attach.category
+      description: 'This method is used to attach a category to a room'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 5169d7f0-103c-3699-9d06-1cc132166a3f
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: 5169d7f0-103c-3699-9d06-1cc132166a3f
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The uuid of the room'
+        required: true
+        example: d993bbf2-3a5f-3a64-85c8-42dba25eadf0
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: d993bbf2-3a5f-3a64-85c8-42dba25eadf0
+    bodyParameters:
+      category_uuid:
+        name: category_uuid
+        description: 'The uuid of the category'
+        required: true
+        example: 8cafffaf-a9c3-3235-ac0d-f9bf96a3c34e
+        type: string
+        custom: []
+    cleanBodyParameters:
+      category_uuid: 8cafffaf-a9c3-3235-ac0d-f9bf96a3c34e
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "Category attached successfully",
+            "data": [
+              {
+                "uuid": "cc9ca745-73cb-41c3-aee5-eaa2bed35fd6",
+                "name": "Kody McLaughlin III",
+                "description": "Est voluptatibus dicta ut iste sit autem. Molestias earum nesciunt repudiandae temporibus odio eius. Odio beatae saepe et illum dicta explicabo quae recusandae. Et fugiat totam laboriosam sunt."
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/partner/room/{uuid}/detach/category'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Room
+      subgroupDescription: ''
+      title: detach.category
+      description: 'This method is used to detach a category from a room'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c801a096-c013-3b4a-abe9-a3182653492c
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      uuid: c801a096-c013-3b4a-abe9-a3182653492c
+    queryParameters:
+      uuid:
+        name: uuid
+        description: 'The uuid of the room'
+        required: true
+        example: 5f2eeca1-1ab4-3303-be35-336965a6b22e
+        type: string
+        custom: []
+    cleanQueryParameters:
+      uuid: 5f2eeca1-1ab4-3303-be35-336965a6b22e
+    bodyParameters:
+      category_uuid:
+        name: category_uuid
+        description: 'The uuid of the category'
+        required: true
+        example: d60c4422-7880-322b-999a-a4a0f23de258
+        type: string
+        custom: []
+    cleanBodyParameters:
+      category_uuid: d60c4422-7880-322b-999a-a4a0f23de258
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status":true,
+           "message":"Category detached successfully",
+           "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/partner/transfer/search
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Transfer
+      subgroupDescription: ''
+      title: search
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      month:
+        name: month
+        description: 'The month of the transfer.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      year:
+        name: year
+        description: 'The year of the transfer.'
+        required: true
+        example: 2021
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      month: 1
+      year: 2021
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "current_page": 1,
+            "data": [
+              {
+                "uuid": "30e088d0-b096-4f12-afc3-7e5b348abf89",
+                "partner_id": 2,
+                "order_id": "be9eed6c-ba8c-3f54-8356-adf250de8f6b",
+                "status": "paid",
+                "note": "Accusamus rerum et amet et velit nisi. Molestiae et est officiis libero impedit voluptatem et. Reiciendis et porro reprehenderit.",
+                "amount": 765.17,
+                "discount": 466.17,
+                "total": 698.39,
+                "receipt_name": "Tevin Cruickshank",
+                "receipt_url": "https:\/\/via.placeholder.com\/640x480.png\/0022ee?text=nostrum",
+                "updated_by": null,
+                "paid_at": null
+              },
+              {
+                "uuid": "1cadef8e-89b1-4dc1-b50e-2765418b9689",
+                "partner_id": 2,
+                "order_id": "aa1a6e71-03cd-3cf3-988c-bbd99dc9e8ac",
+                "status": "pending",
+                "note": "Ex soluta eveniet nulla voluptas dolorum commodi. Qui sunt ea quasi consequatur quasi. Reiciendis aliquam quae voluptatem aliquam. Id eligendi optio vel velit est sed.",
+                "amount": 222.93,
+                "discount": 714.57,
+                "total": 587.1,
+                "receipt_name": "Idell Batz III",
+                "receipt_url": "https:\/\/via.placeholder.com\/640x480.png\/0066ff?text=magni",
+                "updated_by": null,
+                "paid_at": null
+              },
+              {
+                "uuid": "8756b1ea-d97b-4af5-8ed4-67b52756c08a",
+                "partner_id": 2,
+                "order_id": "7d123e08-da35-3ef6-b07a-efed18fdfe87",
+                "status": "pending",
+                "note": "Est ipsa veniam esse eaque consectetur. Iste placeat aperiam eos. Perferendis culpa ratione sit unde ut omnis sit aut. Eum delectus quo maxime cupiditate minima.",
+                "amount": 114.99,
+                "discount": 34.19,
+                "total": 497.2,
+                "receipt_name": "Jena Prosacco",
+                "receipt_url": "https:\/\/via.placeholder.com\/640x480.png\/00ffbb?text=corrupti",
+                "updated_by": null,
+                "paid_at": null
+              }
+            ],
+            "first_page_url": "http:\/\/localhost:9000\/api\/partner\/transfer\/search?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http:\/\/localhost:9000\/api\/partner\/transfer\/search?page=1",
+            "links": [
+              {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+              },
+              {
+                "url": "http:\/\/localhost:9000\/api\/partner\/transfer\/search?page=1",
+                "label": "1",
+                "active": true
+              },
+              {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+              }
+            ],
+            "next_page_url": null,
+            "path": "http:\/\/localhost:9000\/api\/partner\/transfer\/search",
+            "per_page": 30,
+            "prev_page_url": null,
+            "to": 3,
+            "total": 3
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/partner/transfer/{uuid}/download/receipt'
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: Transfer
+      subgroupDescription: ''
+      title: download.receipt
+      description: 'Download receipt for the specified transfer.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: 'The UUID of the transfer.'
+        required: true
+        example: 07950d43-386c-4f0f-bb66-7b26778fc656
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 07950d43-386c-4f0f-bb66-7b26778fc656
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status":true,
+          "message":"Transfer downloaded successfully",
+          "data":[]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/user/verify-email
+    metadata:
+      groupName: Partner
+      groupDescription: ''
+      subgroup: User
+      subgroupDescription: ''
+      title: partner.verify.email
+      description: 'verify email of the partner'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      X-Internal-Token: sunt
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'Code to verify email.'
+        required: false
+        example: '123456'
+        type: required
+        custom: []
+      email:
+        name: email
+        description: 'Email to verify. Example:'
+        required: false
+        example: kennedi.daugherty@example.net
+        type: required
+        custom: []
+    cleanBodyParameters:
+      code: '123456'
+      email: kennedi.daugherty@example.net
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "message": "response.verifyEmail.success",
+            "data": {
+              "verified": true
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
