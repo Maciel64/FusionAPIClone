@@ -14,30 +14,26 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
-      - name: Log in to Amazon ECR
+      - name: Log in to Docker Hub
         env:
-          AWS_REGION: us-east-1
-          ECR_REGISTRY: <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region $AWS_REGION
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+          echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username $DOCKER_HUB_USERNAME --password-stdin
 
       - name: Build, tag, and push the Docker image
         env:
           IMAGE_TAG: ${{ github.sha }}
-          ECR_REPOSITORY: <ecr_repository_name>
-          ECR_REGISTRY: <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+          DOCKER_HUB_REPOSITORY: ${{ secrets.DOCKER_HUB_REPOSITORY_NAME }}
         run: |
-          docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
-          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t $DOCKER_HUB_REPOSITORY:$IMAGE_TAG .
+          docker tag $DOCKER_HUB_REPOSITORY:$IMAGE_TAG $DOCKER_HUB_REPOSITORY:$IMAGE_TAG
+          docker push $DOCKER_HUB_REPOSITORY:$IMAGE_TAG
 
       - name: Deploy to ECS
         env:
-          CLUSTER_NAME: <cluster_name>
-          SERVICE_NAME: <service_name>
+          CLUSTER_NAME: fusion-api-cluster
+          SERVICE_NAME: fusion_api
           TASK_DEFINITION_FILE: ecs-task-def.json
         run: |
           aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
