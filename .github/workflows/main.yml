@@ -35,5 +35,7 @@ jobs:
           CLUSTER_NAME: fusion-api-cluster
           SERVICE_NAME: fusion_api
           TASK_DEFINITION_FILE: ecs-task-def.json
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
